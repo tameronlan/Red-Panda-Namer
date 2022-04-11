@@ -1,0 +1,37 @@
+@import "vars";
+@import "base";
+@import "buttons";
+@import "form";
+
+.concept__name{
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #000;
+  padding: 10px 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.concept__wrapper{
+  padding-top: 10px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.concept__icon-plus{
+  margin: -2px 6px 0 -6px
+}
+
+.fade-slide-enter-active, .fade-slide-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.fade-slide-enter, .fade-slide-leave-to {
+  opacity: 0;
+  transform: translate(0, -10px);
+}
+
+
+@import "line-for-create";
+@import "settings";

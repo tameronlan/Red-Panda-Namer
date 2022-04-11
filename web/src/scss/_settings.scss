@@ -1,0 +1,55 @@
+.settings{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  background: #fff;
+  padding: 22px 20px;
+
+  &__closer{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 20px;
+    top: 22px;
+
+    &:before, &:after{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      height: 1px;
+      width: 100%;
+      background: $color-primary;
+    }
+
+    &:before{
+      transform: rotate(45deg);
+    }
+
+    &:after{
+      transform: rotate(-45deg);
+    }
+  }
+
+  &-choice{
+    //display: flex;
+    margin: 20px 0 0;
+
+    &__link{
+      padding: 10px 20px 10px 0;
+      width: 100%;
+      border-bottom: 1px solid #ccc;
+    }
+
+    &__link:hover{
+      background: rgba($color-accent-bg, 0.02);
+
+    }
+  }
+}

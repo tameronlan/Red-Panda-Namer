@@ -1,0 +1,10 @@
+{
+  "name": "Red Panda Namer",
+  "id": "1031847222101271212",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "web/app/index.html"
+}
