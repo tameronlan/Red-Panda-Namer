@@ -6,20 +6,20 @@
             :class="{'form__label_error' : withError}"
         >
             {{ item.title }}
-            <span v-if="withError" class="form__label-attention">!</span>
+<!--            <span v-if="withError" class="form__label-attention">!</span>-->
         </label>
         <input
             class="form__input"
             type="text"
             :id=item.key
             :placeholder=item.placeholder
-            :value="value"
-            @input="value=$event.target.value">
+            v-model="value"
+        >
     </div>
 </template>
 
 <script>
-import {mapActions, mapState} from "vuex"
+import {mapMutations, mapState} from "vuex"
 
 export default {
     name: "InputField",
@@ -52,15 +52,13 @@ export default {
         ...mapState(["showValidation"])
     },
     methods: {
-        ...mapActions(["updateFieldItem"])
+        ...mapMutations(["updateFieldItem"])
     },
     watch: {
         value(newVal){
             this.item.value = newVal
 
             this.updateFieldItem(this.item)
-
-            this.$emit("changeName")
         }
     }
 }

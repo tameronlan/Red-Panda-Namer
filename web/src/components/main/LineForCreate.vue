@@ -1,62 +1,82 @@
 <template>
-    <div class="line-for-create" :key="config.updated">
-        <div class="line-for-create__name">
-            {{name}}
+    <div
+        class="app-stage-menu-item"
+        :class="{
+            'app-stage-menu-item_active': config.id === currentConfig.id,
+            'app-stage-menu-item_alarm': !validateConfig(config) && showValidation
+        }"
+        :key="config.id"
+    >
+        <div class="app-stage-menu-item__actions">
+            <div class="app-stage-menu-item__action" @click="copyAction">
+                <copy-icon/>
+            </div>
+            <div class="app-stage-menu-item__action" @click="deleteAction">
+                <minus-icon/>
+            </div>
         </div>
-        <div class="line-for-create__count">x{{count}}</div>
-        <div class="line-for-create__actions">
-            <span class="link" @click="copyAction">copy</span> /
-            <span class="link" @click="editAction">edit</span> /
-            <span class="link" @click="deleteAction">delete</span>
+
+        <div class="app-stage-menu-item__middle" @click="editAction">
+            <div class="app-stage-menu-item__icon">
+                <menu-icon-frame/>
+            </div>
+
+            <div class="app-stage-menu-item__title">
+                {{name}}
+            </div>
+
+            <div class="app-stage-menu-item__count">
+                x
+                {{count}}
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import {mapState, mapMutations} from "vuex"
-    import {getCountFromConfig, getNameFromConfig, getPatternString} from "@/api/config";
-    import {MODE_EDIT} from "@/consts";
+    import {getCountFromConfig, getNameFromConfig, validateConfig} from "@/api/config";
     import {copyObject} from "@/lib/copyFunction";
+    import MenuIconFrame from "@/assets/menu_icon_frame.svg";
+    import MinusIcon from "@/assets/minus_icon.svg";
+    import CopyIcon from "@/assets/copy_icon.svg";
 
     export default {
+        components: {MenuIconFrame, MinusIcon, CopyIcon},
         name: "LineForCreate",
-        props: ["config"],
+        props: ["config", "part"],
         computed: {
             name(){
-                return getNameFromConfig(this.currentPatternString, this.config)
+                return getNameFromConfig(this.pattern, this.config)
             },
             count(){
                 return getCountFromConfig(this.config)
             },
-            ...mapState(["currentPatternString"])
+            ...mapState("frames", ["pattern"]),
+            ...mapState(["currentConfig", "showValidation"])
         },
         methods: {
+            validateConfig,
             copyAction(){
-                this.appendListForCreate(copyObject(this.config))
+                this.appendListForCreate({
+                    part: this.part,
+                    config: copyObject(this.config)
+                })
             },
             deleteAction(){
-                this.removeFromListForCreate(this.config.id)
-
-                this.$toasted.show("Configuration removed")
+                this.removeFromListForCreate({
+                    id: this.config.id,
+                    part: this.part
+                })
             },
             editAction(){
-                this.removeFromListForCreate(this.config.id)
-                this.setCurrentConfigId(this.config.id)
                 this.setCurrentConfig(this.config)
-                this.changeMode(MODE_EDIT)
             },
             ...mapMutations([
                 "removeFromListForCreate",
-                "changeMode",
-                "setCurrentConfigId",
                 "setCurrentConfig",
                 "appendListForCreate"
             ])
-        },
-        watch: {
-            name(){
-                console.log("name_changed")
-            }
         }
     }
 </script>

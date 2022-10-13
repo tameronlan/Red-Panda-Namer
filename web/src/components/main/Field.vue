@@ -6,7 +6,7 @@
                 :is="getFieldComponent(fieldItem)"
                 :item="fieldItem"
                 :allWeight="allWeight"
-                @changeName="$emit('changeName')"
+                @changeValue="$emit('changeValue')"
             ></comment>
         </template>
     </div>

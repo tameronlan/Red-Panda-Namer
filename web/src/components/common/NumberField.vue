@@ -6,12 +6,11 @@
             :class="{'form__label_error' : withError}"
         >
             {{item.title}}
-            <span v-if="withError" class="form__label-attention">!</span>
+<!--            <span v-if="withError" class="form__label-attention">!</span>-->
         </label>
         <input
             class="form__input"
-            :value="value"
-            @input="value=$event.target.value"
+            v-model="value"
             type="number"
             :id=item.key
             :max=item.max
@@ -21,8 +20,7 @@
 </template>
 
 <script>
-import {mapMutations, mapActions, mapState} from "vuex"
-import {updateField, validateField} from "@/api/config";
+import {mapMutations, mapState} from "vuex"
 
 export default {
     name: "NumberField",
@@ -60,8 +58,6 @@ export default {
         changeNumber(number){
             number = Number(number)
 
-            console.log(number < this.item.min)
-
             if (number < this.item.min){
                 this.value = this.item.min
             }
@@ -70,16 +66,13 @@ export default {
                 this.value = this.item.max
             }
         },
-        ...mapActions(["updateFieldItem"]),
-        ...mapMutations(["setCurrentConfig"]),
+        ...mapMutations(["updateFieldItem"]),
     },
     watch: {
         value(newVal){
             this.item.value = newVal
 
             this.updateFieldItem(this.item)
-
-            this.$emit("changeName")
         }
     }
 }

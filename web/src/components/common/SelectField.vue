@@ -6,7 +6,7 @@
             :for=item.key
         >
             {{ item.title }}
-            <span v-if="withError" class="form__label-attention">!</span>
+<!--            <span v-if="withError" class="form__label-attention">!</span>-->
         </label>
         <select name="selector" :id=item.key required v-model="selected">
             <template v-if="item.placeholder.length > 0">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {mapActions, mapState} from "vuex"
+import {mapMutations, mapState} from "vuex"
 import {validateField} from "@/api/config";
 
 export default {
@@ -54,17 +54,15 @@ export default {
         ...mapState(["showValidation"])
     },
     methods: {
-        ...mapActions(["updateFieldItem"])
+        ...mapMutations(["updateFieldItem"])
     },
     watch: {
-        selected(newValue, oldValue){
+        selected(newValue){
             this.item.values.forEach(valueItem => {
                 valueItem.isChosen = valueItem.value === newValue
             })
 
             this.updateFieldItem(this.item)
-
-            this.$emit("changeName")
         }
     }
 }

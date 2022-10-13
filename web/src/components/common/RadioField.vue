@@ -5,11 +5,11 @@
             :class="{'form__label_error' : withError}"
         >
             {{ item.title }}
-            <span v-if="withError" class="form__label-attention">!</span>
+<!--            <span v-if="withError" class="form__label-attention">!</span>-->
         </div>
-        <div class="form__checkboxes">
+        <div class="form__radios">
             <template v-for="value in item.values">
-                <div class="form__checkbox">
+                <div class="form__radio">
                     <input type="radio" :id=value.value :value=value.value v-model="picked">
                     <label :for=value.value>{{value.title}}</label>
                 </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {mapActions, mapState} from "vuex"
+import {mapState, mapMutations} from "vuex"
 import {validateField} from "@/api/config";
 
 export default {
@@ -55,17 +55,15 @@ export default {
         ...mapState(["showValidation"])
     },
     methods: {
-        ...mapActions(["updateFieldItem"])
+        ...mapMutations(["updateFieldItem"])
     },
     watch: {
-        picked(newValue, oldValue){
+        picked(newValue){
             this.item.values.forEach(valueItem => {
                 valueItem.isChosen = valueItem.value === newValue
             })
 
             this.updateFieldItem(this.item)
-
-            this.$emit("changeName")
         }
     }
 }

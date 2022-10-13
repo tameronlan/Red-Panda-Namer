@@ -1,0 +1,214 @@
+.app-stage{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+
+    &__main{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid #CCCCCC;
+    }
+
+    &__bottom{
+        padding: 8px 10px;
+    }
+
+    &__create-btn{
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+.app-stage-menu{
+    min-width: 20%;
+    max-width: 50%;
+    width: 30%;
+    position: relative;
+
+    &__title{
+        height: 40px;
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        font-weight: 600;
+    }
+
+    &__inner{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 40px;
+        overflow-y: auto;
+    }
+
+    &-category{
+        padding: 12px;
+        font-weight: 600;
+        border-bottom: 1px solid #ccc;
+        overflow: hidden;
+
+        &__actions{
+            float: right;
+            margin: -2px 0 0 6px;
+            display: flex;
+        }
+
+        &__action{
+            width: 18px;
+            height: 18px;
+        }
+
+        &__title{
+            white-space: nowrap;
+        }
+    }
+
+    &-items{
+        padding: 6px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    &-item{
+        padding: 6px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-items: center;
+        line-height: 14px;
+
+        &_active{
+            font-weight: 600;
+        }
+
+        &_alarm{
+            color: #ff5959;
+        }
+
+        &__actions{
+            float: right;
+            margin: -2px 0 0 6px;
+            display: flex;
+        }
+
+        &__title{
+            max-width: 60%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        &__middle{
+            display: flex;
+        }
+
+        &__icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__action{
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    &__mover{
+        position: absolute;
+        width: 1px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: #CCCCCC;
+    }
+}
+
+.app-stage-form{
+    position: relative;
+    height: 100%;
+    overflow-y: hidden;
+    max-width: 50%;
+    width: 100%;
+
+    &__title{
+        height: 40px;
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    &__mover{
+        position: absolute;
+        width: 1px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: #CCCCCC;
+    }
+
+    &__inner{
+        padding: 12px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 40px;
+        overflow-y: auto;
+    }
+}
+
+.app-stage-example{
+    width: 33%;
+    max-width: 50%;
+    min-width: 20%;
+    position: relative;
+
+    &__title{
+        height: 40px;
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    &__inner{
+        padding: 12px;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+    }
+
+    &__name{
+        padding: 0 4px;
+        font-weight: 600;
+        word-break: break-word;
+        margin: 0 0 12px;
+    }
+
+    &-image{
+        background-color: #E8E8E8;
+        border-radius: 10px;
+        border: 1px solid #D0D0D0;
+        position: relative;
+        margin: 0 0 12px;
+
+        &__inner{
+            transition: all .1s linear;
+        }
+
+        &__icon{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

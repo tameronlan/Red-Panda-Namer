@@ -1,21 +1,14 @@
 <template>
     <div class="app">
-        <Form></Form>
+        <Stage/>
     </div>
 </template>
 
 <script>
-    import Form from "@/components/main/Form";
+    import Stage from "@/components/main/Stage";
+
     export default {
         name: 'app',
-        components: {Form},
-        data(){
-            return { }
-        },
-        computed: {
-        },
-        created(){
-            console.log("APP::STARTED")
-        },
+        components: {Stage}
     };
 </script>

@@ -7,5 +7,6 @@ export const FIELD_RADIO = "radio"
 export const FIELD_INPUT = "input"
 export const FIELD_NUMBER = "number"
 
-export const MODE_ADD = "mode_add"
-export const MODE_EDIT = "mode_edit"
+export const PART_CREATE_FRAMES = "create_frames"
+
+export const NONE_VARIANT_VALUE = -100
